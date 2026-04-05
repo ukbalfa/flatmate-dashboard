@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-accent: #1D9E75;
+  --color-accent-hover: #188a65;
+  --color-heading: #0a0a0a;
+  --color-body: #6b7280;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-bg-page: #ffffff;
+  --color-bg-section: #f9fafb;
+  --color-bg-card: #ffffff;
+  --color-bg-sidebar: #ffffff;
+  --color-bg-input: #ffffff;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #1D9E75;
+  --font-sans: var(--font-inter);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* -- Base -- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-page);
+  color: var(--color-body);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background: #0f1117;
+  color: #94a3b8;
+}
+
+/* -- Typography -- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-heading);
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: #f1f5f9;
+}
+
+/* -- Card -- */
+.fm-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.fm-card:hover {
+  border-color: rgba(29,158,117,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+html.dark .fm-card {
+  background: #1a1d27;
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+html.dark .fm-card:hover {
+  border-color: rgba(29,158,117,0.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+/* -- Buttons -- */
+.fm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.fm-btn:hover {
+  transform: scale(1.02);
+}
+
+.fm-btn:active {
+  transform: scale(0.97);
+}
+
+.fm-btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.fm-btn-primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 2px 8px rgba(29,158,117,0.25);
+}
+
+.fm-btn-dark {
+  background: #0a0a0a;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.fm-btn-dark:hover {
+  background: #1f2937;
+}
+
+.fm-btn-danger {
+  background: var(--color-danger);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.fm-btn-danger:hover {
+  box-shadow: 0 2px 8px rgba(239,68,68,0.25);
+}
+
+.fm-btn-ghost {
+  background: transparent;
+  color: var(--color-body);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.fm-btn-ghost:hover {
+  color: var(--color-heading);
+  border-color: var(--color-border);
+  background: var(--color-bg-section);
+}
+
+html.dark .fm-btn-ghost {
+  color: #94a3b8;
+  border-color: rgba(255,255,255,0.08);
+}
+
+html.dark .fm-btn-ghost:hover {
+  color: #f1f5f9;
+  background: rgba(255,255,255,0.04);
+}
+
+/* -- Inputs -- */
+.fm-input {
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  color: var(--color-heading);
+  font-size: 0.875rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+}
+
+.fm-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(29,158,117,0.1);
+}
+
+.fm-input::placeholder {
+  color: #9ca3af;
+}
+
+html.dark .fm-input {
+  background: #13161f;
+  border-color: rgba(255,255,255,0.08);
+  color: #f1f5f9;
+}
+
+.fm-select {
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  color: var(--color-heading);
+  font-size: 0.875rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.fm-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(29,158,117,0.1);
+}
+
+html.dark .fm-select {
+  background: #13161f;
+  border-color: rgba(255,255,255,0.08);
+  color: #f1f5f9;
+}
+
+/* -- Checkbox -- */
+.fm-checkbox {
+  accent-color: var(--color-accent);
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+/* -- Animations -- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(29,158,117,0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(29,158,117,0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out both;
+}
+
+.animate-pulse-teal {
+  animation: pulse-teal 1.5s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 200ms; }
+.stagger-4 { animation-delay: 300ms; }
+
+/* -- Page transition -- */
+.page-enter {
+  animation: fadeIn 200ms ease both;
+}
+
+/* -- Scrollbar -- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

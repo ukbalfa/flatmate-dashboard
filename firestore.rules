@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    function isSelf(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Users collection: Anyone authed can read. Only admin or the user themselves can write/delete.
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write, delete: if isAuthenticated() && (isAdmin() || isSelf(userId));
+    }
+
+    // Shared collections: Any authenticated roommate can read and write.
+    match /expenses/{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+    match /tasks/{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+    match /cleaning/{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+    match /announcements/{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+    match /settings/{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}

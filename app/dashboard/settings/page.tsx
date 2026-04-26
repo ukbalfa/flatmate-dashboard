@@ -100,6 +100,7 @@ export default function SettingsPage() {
           instagram: data.instagram || '',
           color: data.color || 'blue',
         });
+        // @ts-ignore
         if (data.notifications) {
           setNotifications(data.notifications as Record<string, boolean>);
         }

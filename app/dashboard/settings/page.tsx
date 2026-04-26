@@ -101,6 +101,7 @@ export default function SettingsPage() {
           color: data.color || 'blue',
         });
         // @ts-ignore
+        // @ts-ignore
         if (data.notifications) {
           setNotifications(data.notifications as Record<string, boolean>);
         }

@@ -515,9 +515,9 @@ export default function ExpensesPage() {
                       <span className={`px-2 py-0.5 rounded text-xs font-semibold text-white ${getCategoryColor(e.category)}`}>
                         {e.category}
                       </span>
-                      {e.isRecurring && (
-                        <Repeat className="w-3 h-3 text-[#1D9E75]" title="Recurring expense" />
-                      )}
+{e.isRecurring && (
+                      <Repeat className="w-3 h-3 text-[#1D9E75]" />
+                    )}
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="font-semibold text-[#0a0a0a] dark:text-gray-100">

@@ -15,7 +15,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
 
-**No test framework is configured.** There are no test files or test scripts. If you need to add tests, ask the user before introducing a new dependency.
+**No test framework is configured.** Ask before introducing test dependencies.
 
 ## Tech Stack
 
@@ -51,7 +51,6 @@ import { Plus, Trash2 } from 'lucide-react';
 
 - **Every page and layout file** (except `app/layout.tsx`) is a client component
 - Place `'use client';` at the very top of the file, before all imports
-- Quote style: use single quotes `'use client'` (match existing majority convention)
 
 ### Components
 
@@ -111,15 +110,13 @@ import { Plus, Trash2 } from 'lucide-react';
 
 - All data operations are **direct Firestore calls from client components**
 - No API routes, no server actions, no data-fetching library
+- **Firebase Auth is used** — see `context/AuthContext.tsx` for auth state management
 - Common fetch pattern (reused across pages):
-  ```typescript
-  const snap = await getDocs(query(collection(db, 'collectionName'), orderBy('createdAt', 'desc')));
-  setItems(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-  ```
-- User identity is stored in `localStorage` (not Firebase Auth):
-  ```typescript
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  ```
+```typescript
+const snap = await getDocs(query(collection(db, 'collectionName'), orderBy('createdAt', 'desc')));
+setItems(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+```
+- Access auth state via `useAuth()` hook from `context/AuthContext`
 
 ### Animations
 

@@ -16,28 +16,36 @@ import {
   LogOut,
   Sun,
   Moon,
+  Settings,
+  Wallet,
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
 import { toast } from 'sonner';
 import { useAuth } from '../../context/AuthContext';
+import NotificationsDropdown from '../components/NotificationsDropdown';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const navLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/dashboard/rates", label: "Exchange Rates", icon: TrendingUp },
   { href: "/dashboard/expenses", label: "Expenses", icon: Receipt },
+  { href: "/dashboard/balances", label: "Balances", icon: Wallet },
   { href: "/dashboard/cleaning", label: "Cleaning", icon: Sparkles },
   { href: "/dashboard/tasks", label: "Tasks", icon: CheckSquare },
   { href: "/dashboard/roommates", label: "Roommates", icon: Users },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
 const pageNames: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/dashboard/rates": "Exchange Rates",
   "/dashboard/expenses": "Expenses",
+  "/dashboard/balances": "Balances",
   "/dashboard/cleaning": "Cleaning Schedule",
   "/dashboard/tasks": "Tasks",
   "/dashboard/roommates": "Roommates",
+  "/dashboard/settings": "Settings",
 };
 
 interface DashboardUser {
@@ -232,12 +240,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </span>
           </button>
 
-          <button
-            onClick={() => toast.info('Notifications feature coming in v0.2.0!')}
-            className="p-2 rounded-lg hover:bg-white/[0.06] hover:text-teal-400 transition-colors mr-3 relative"
-          >
-            <Bell className="w-4 h-4 text-slate-300" />
-          </button>
+          <NotificationsDropdown />
+
+          <LanguageSwitcher />
 
           {dashboardUser && (
             <span className="text-sm text-slate-200 font-medium hidden sm:block">

@@ -2,7 +2,7 @@
 
 <br/>
 
-# 🏠 FlatMate Dashboard
+# 🏠 FlatMate Web
 
 ### *The all-in-one command centre for shared living.*
 

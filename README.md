@@ -115,20 +115,19 @@ Browser (React Client Components)
 ### Auth Model
 
 ```
-1. User submits credentials on /login
+1. User submits email + password on /login
         │
         ▼
-2. Credentials verified against Firestore `users` collection
+2. Firebase Auth: signInWithEmailAndPassword (or createUserWithEmailAndPassword on first run)
         │
         ▼
-3. User document stored in localStorage under key "user"
+3. onAuthStateChanged (AuthContext) fires → loads profile from Firestore users/{uid}
         │
         ▼
-4. Dashboard layout reads localStorage on mount
-   → redirects to /login if no session found
+4. Dashboard layout subscribes to AuthContext; redirects to /login if user is null
         │
         ▼
-5. Role-based UI: admin vs. roommate (from `role` field)
+5. Role-based UI: admin vs. roommate (from `role` field in Firestore profile)
 ```
 
 ### Theme & Animation
@@ -249,8 +248,7 @@ FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY----
 
    | Field | Type | Description |
    |---|---|---|
-   | `username` | `string` | Login username |
-   | `password` | `string` | Login password (hashed recommended) |
+   | `username` | `string` | User's email address (also used for Firebase Auth) |
    | `name` | `string` | Display name |
    | `role` | `"admin"` \| `"roommate"` | Access level |
    | `color` | `string` | Avatar colour (hex, e.g. `#1D9E75`) |
